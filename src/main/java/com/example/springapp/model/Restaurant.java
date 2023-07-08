@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 
@@ -24,6 +25,8 @@ public class Restaurant {
         @OneToMany(cascade = CascadeType.ALL)
         private List<MenuItem> restaurantmenu;
         private Long restaurantContact;
+        @OneToOne(cascade = CascadeType.ALL)
+        private Image image;
         
         public Restaurant(Long restaurantId, String restaurantName, String restaurantLocation, Long restaurantContact) {
                 this.restaurantId = restaurantId;
@@ -52,6 +55,16 @@ public class Restaurant {
                 this.restaurantLocation = restaurantLocation;
                 this.restaurantEmail = restaurantEmail;
                 this.restaurantContact = restaurantContact;
+        }
+
+        public Restaurant(Long restaurantId, String restaurantName, String restaurantLocation, String restaurantEmail,
+                        Long restaurantContact, Image image) {
+                this.restaurantId = restaurantId;
+                this.restaurantName = restaurantName;
+                this.restaurantLocation = restaurantLocation;
+                this.restaurantEmail = restaurantEmail;
+                this.restaurantContact = restaurantContact;
+                this.image = image;
         }
 
         

@@ -58,6 +58,26 @@ public class CustomerService {
         return userResponses;
     }
 
+    public ResponseEntity<?> updateUser(Customer customer) {
+        if(customerRepo.existsById(customer.getId())) {
+            return new ResponseEntity<>(customerRepo.save(customer), HttpStatus.OK);
+        } else {
+            String errorMessage = "User does not exist";
+            return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity<?> deleteUser(Long id) {
+        if(customerRepo.existsById(id)) {
+            customerRepo.deleteById(id);
+            String successMessage = "User deleted successfully";
+            return new ResponseEntity<>(successMessage, HttpStatus.OK);
+        } else {
+            String errorMessage = "User does not exist";
+            return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+        }   
+    }
+
     
 
 
