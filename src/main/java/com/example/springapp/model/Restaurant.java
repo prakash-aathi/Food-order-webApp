@@ -27,6 +27,7 @@ public class Restaurant {
         private Long restaurantContact;
         @OneToOne(cascade = CascadeType.ALL)
         private Image image;
+        private Long userId;
         
         public Restaurant(Long restaurantId, String restaurantName, String restaurantLocation, Long restaurantContact) {
                 this.restaurantId = restaurantId;

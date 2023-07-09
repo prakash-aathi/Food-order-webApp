@@ -69,7 +69,9 @@ public class RestaurantService {
             }
             restaurantList.add(
                     new ResutarantResponse(res.getRestaurantId(), res.getRestaurantName(), res.getRestaurantLocation(),
-                            res.getRestaurantEmail(), res.getRestaurantContact(),menuList  ,img));
+                            res.getRestaurantEmail(), res.getRestaurantContact(), menuList, img, res.getUserId()));
+            System.out.println("Restaurant List: " + res.getUserId());
+            System.out.println("Restaurant List: " + restaurantList.get(restaurantList.size()-1).getUserId());
         }
         return restaurantList;
     }
@@ -97,7 +99,7 @@ public class RestaurantService {
         }
 
     public void createRestaurant(MultipartFile file, String restaurantName, String restaurantLocation,
-            Long restaurantContact, String restaurantEmail) throws IOException {
+            Long restaurantContact, String restaurantEmail, Long userId, Long id ) throws IOException {
         Image image = new Image();
         image.setName(file.getOriginalFilename());
         image.setType(file.getContentType());
@@ -108,6 +110,10 @@ public class RestaurantService {
         restaurant.setRestaurantContact(restaurantContact);
         restaurant.setRestaurantEmail(restaurantEmail);
         restaurant.setImage(image);
+        restaurant.setUserId(userId);
+        if (id != null) {
+            restaurant.setRestaurantId(id);
+        }
         restaurantRepo.save(restaurant);
     }
 

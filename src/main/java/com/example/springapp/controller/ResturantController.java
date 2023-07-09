@@ -44,9 +44,9 @@ public class ResturantController {
     @ResponseStatus(HttpStatus.CREATED)
     public String createRestaurant(@RequestPart("file") MultipartFile file, @RequestParam String restaurantName,
             @RequestParam String restaurantLocation, @RequestParam Long restaurantContact,
-            @RequestParam String restaurantEmail) throws IOException {
+            @RequestParam String restaurantEmail, @RequestParam Long userId, @RequestParam( value = "id", required = false ) Long id ) throws IOException {
         restaurantService.createRestaurant(file, restaurantName, restaurantLocation, restaurantContact,
-                restaurantEmail);
+                restaurantEmail, userId, id);
         return "Restaurant created";
     }
 
