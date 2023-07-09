@@ -1,6 +1,7 @@
 package com.example.springapp.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class MenuItem {
     private String tags;
     @OneToOne(cascade = CascadeType.ALL)
     private Image image;
+    private Long restaurantId;
     
     public MenuItem(Long id, String name, String description, double price, String tags) {
         this.id = id;

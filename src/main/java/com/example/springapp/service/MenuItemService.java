@@ -64,5 +64,14 @@ public class MenuItemService {
         menuItemRepo.save(menu);
     }
 
+    public void deleteMenuItem(Long id) {
+        MenuItem menu =  menuItemRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Menu Item not found with id: " + id));
+        Restaurant restaurant = restaurantRepo.findById(menu.getRestaurantId())
+                .orElseThrow(() -> new RuntimeException("Restaurant not found"));
+        restaurant.getRestaurantmenu().remove(menu);
+        menuItemRepo.deleteById(id);
+    }
+
     
 }

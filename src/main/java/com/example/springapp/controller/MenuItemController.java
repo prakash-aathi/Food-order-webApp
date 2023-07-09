@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -49,6 +50,7 @@ public class MenuItemController {
         m.setDescription(description);
         m.setPrice(price);
         m.setTags(tags);
+        m.setRestaurantId(restaurantId);
         return menuItemService.createMenu(restaurantId, m, file);
     }
     
@@ -73,6 +75,13 @@ public class MenuItemController {
         List<MenuItem> items = new ArrayList<>();
         items.add(item);
         return items;
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteMenuItem(@RequestParam Long menuId ) {
+        menuItemService.deleteMenuItem(menuId);
+        return "Menu Item Deleted";
     }
 
     
