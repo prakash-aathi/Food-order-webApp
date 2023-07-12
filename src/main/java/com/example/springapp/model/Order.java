@@ -25,6 +25,7 @@ public class Order {
     private Long id;
 
     private int customerId;
+    private String customerName;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<MenuItem> items;

@@ -34,10 +34,11 @@ public class OrderService {
         Order order = new Order();
         order.setCustomerId(orderRequest.getCustomerId());
         order.setDeliveryAddress(orderRequest.getDeliveryAddress());
+        order.setCustomerName(orderRequest.getCustomerName());
 
         LocalDateTime currentDateTime = LocalDateTime.now();
-        LocalDateTime updatedDateTime = currentDateTime.plusHours(2);
-        Date deliveryTime = Date.from(updatedDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        // LocalDateTime updatedDateTime = currentDateTime.plusHours(2);
+        Date deliveryTime = Date.from(currentDateTime.atZone(ZoneId.systemDefault()).toInstant());
         order.setDeliveryTime(deliveryTime);
 
         order.setTotalCost(orderRequest.getTotalCost());

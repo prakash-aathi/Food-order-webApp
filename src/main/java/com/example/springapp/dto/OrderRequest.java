@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class OrderRequest {
 
     private int customerId;
+    private String customerName;
     @OneToMany( cascade = CascadeType.ALL )
     private List<MenuItem> items;
     private double totalCost;
