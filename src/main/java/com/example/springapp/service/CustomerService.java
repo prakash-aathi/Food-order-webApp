@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.springapp.dto.LoginRequest;
+import com.example.springapp.dto.UserChangeRequest;
 import com.example.springapp.dto.UserResponse;
 import com.example.springapp.model.Customer;
 import com.example.springapp.repository.CustomerRepo;
@@ -68,14 +70,25 @@ public class CustomerService {
     }
 
     public ResponseEntity<?> deleteUser(Long id) {
-        if(customerRepo.existsById(id)) {
+        if (customerRepo.existsById(id)) {
             customerRepo.deleteById(id);
             String successMessage = "User deleted successfully";
             return new ResponseEntity<>(successMessage, HttpStatus.OK);
         } else {
             String errorMessage = "User does not exist";
             return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
-        }   
+        }
+    }
+
+    @Transactional
+    public Customer ChangeUserDetails(UserChangeRequest userChange) {
+        Customer cus = customerRepo.findById(userChange.getId())
+                .orElseThrow(() -> new RuntimeException("Menu Item not found with id: " + userChange.getId()));
+        cus.setName(userChange.getName());
+        cus.setPassword(userChange.getPassword());
+        cus.setPhone(userChange.getPhone());
+
+        return customerRepo.save(cus);
     }
 
     

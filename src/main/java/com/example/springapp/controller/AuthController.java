@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springapp.dto.LoginRequest;
+import com.example.springapp.dto.UserChangeRequest;
 import com.example.springapp.dto.UserResponse;
 import com.example.springapp.model.Customer;
 import com.example.springapp.service.CustomerService;
@@ -59,5 +60,11 @@ public class AuthController {
         return customerService.deleteUser(id);
     }
 
+    @PutMapping("/user")
+    @ResponseStatus(HttpStatus.OK)
+    public Customer changeUser(@RequestBody UserChangeRequest userChange) {
+        return customerService.ChangeUserDetails(userChange);
+        
+    }
 
 }
