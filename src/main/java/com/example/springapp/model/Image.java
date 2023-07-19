@@ -25,3 +25,4 @@ public class Image {
     private byte[] imageData;
     
 }
+

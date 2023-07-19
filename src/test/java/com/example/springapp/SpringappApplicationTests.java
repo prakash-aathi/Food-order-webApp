@@ -25,6 +25,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.example.springapp.model.MenuItem;
 import com.example.springapp.model.Order;
 import com.example.springapp.model.Restaurant;
+import com.example.springapp.service.AddressService;
+import com.example.springapp.service.CustomerService;
 import com.example.springapp.service.MenuItemService;
 import com.example.springapp.service.OrderService;
 import com.example.springapp.service.RestaurantService;
@@ -34,7 +36,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 // @RunWith(SpringJUnit4ClassRunner.class) 
 @SpringBootTest(classes = SpringappApplication.class)
 @AutoConfigureMockMvc
-class DemoApplicationTests {
+class SpringappApplicationTests {
 
 	 @Autowired
 	    private MockMvc mockMvc;
@@ -54,7 +56,7 @@ class DemoApplicationTests {
 		        return objectMapper.writeValueAsString(object);
 		    }
 		 
-		  MenuItem m=new MenuItem(1L,"Abc","qwee",10.0,"tags");
+		 MenuItem m=new MenuItem(1L,"Abc","qwee",10.0,"tags");
 		  MenuItem m1=new MenuItem(3L,"Sound","qwee",10.0,"tags");
 		  MenuItem m2=new MenuItem(2L,"Sound","qwee",10.0,"tags");
 
